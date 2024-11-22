@@ -1,0 +1,26 @@
+https://kodekloud.com/courses/labs-kubernetes-for-the-absolute-beginners-hands-on-2/
+ use the code: PCKT6DHB14K8S
+
+On CentOS
+* yum install docker-distribution
+* systemctl enable --now docker-distribution
+* Config s in /etc/docker-distribution/registry/config.yml
+* Registry service listens on port 5000, open it in the firewall
++ sudo firewall-cmd --add-port 5000/tcp
+On Ubuntu
+* docker run -d -p 5000:5000 --restart=always --name registry registry:latest
++ sudo ufw allow 5000/tcp
+docker pull fedora
+
+docker images
+
+docker tag fedora:latest localhost:5000/myfedora (the tag is required to
+push it to your own image registry)
+
+docker push localhost:5000/myfedora
+
+docker rmi fedora; also remove the image based on the tag you've just
+created
+
+docker pull localhost:5000/myfedora downloads it again from your own
+local registry
